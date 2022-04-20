@@ -17,8 +17,16 @@ public class PokedexRepository {
     public ArrayList<Pokemon> getPokedex(){
         ArrayList<Pokemon> pokedex = new ArrayList<Pokemon>();
         for (String pokemonName: jdbcTemplate.queryForList("SELECT DISTINCT Pokemon_name FROM pokedex ORDER BY Pokedex_number", String.class)){
+            pokemonName = pokemonName.replaceAll("\"", "");
+
+            if (pokemonName.equals("Nidoran (Male)")) {
+                pokemonName = pokemonName.replace(" (Male)", "-m");
+            } else if (pokemonName.equals("Nidoran (Female)")) {
+                pokemonName = pokemonName.replace(" (Female)", "-f");
+            }
             pokedex.add(new Pokemon(pokemonName));
         }
+
         return pokedex;
     }
 

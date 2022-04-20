@@ -1,8 +1,11 @@
 package ps.pokappdex.project.model;
 
+import java.util.ArrayList;
+
 public class Trainer {
     private String name;
     private String password;
+    private ArrayList<TrainerPokemon[]> teams;
 
     Trainer(){
     }
