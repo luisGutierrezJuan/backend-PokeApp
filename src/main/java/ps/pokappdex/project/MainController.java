@@ -2,7 +2,6 @@ package ps.pokappdex.project;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,12 +35,30 @@ public class MainController {
         try {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             Trainer newTrainer = objectMapper.readValue(user, Trainer.class);
+            if(UserRepository.existe(newTrainer.getName())){
+                return new ResponseEntity<>(newTrainer, HttpStatus.OK);
+            }
+            return null;
+        } catch (Exception e ) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    @PostMapping("/register")
+    public ResponseEntity<Trainer> register(@RequestBody String user){
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            Trainer newTrainer = objectMapper.readValue(user, Trainer.class);
+            if(UserRepository.existe(newTrainer.getName())){
+                return null;
+            }
+            UserRepository.add(newTrainer);
             return new ResponseEntity<>(newTrainer, HttpStatus.OK);
         } catch (Exception e ) {
             System.out.println(e);
         }
         return null;
     }
-
 
 }

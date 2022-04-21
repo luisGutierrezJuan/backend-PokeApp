@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Trainer {
     private String name;
     private String password;
+    private String email;
     private ArrayList<TrainerPokemon[]> teams;
 
     Trainer(){
@@ -15,5 +16,8 @@ public class Trainer {
 
     public String getPassword(){
         return this.password;
+    }
+    public String getEmail(){
+        return this.email;
     }
 }
