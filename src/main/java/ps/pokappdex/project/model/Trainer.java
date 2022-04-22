@@ -17,12 +17,7 @@ public class Trainer {
     public String getPassword(){
         return this.password;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public ArrayList<TrainerPokemon[]> getTeams() {
-        return teams;
+    public String getEmail(){
+        return this.email;
     }
 }
