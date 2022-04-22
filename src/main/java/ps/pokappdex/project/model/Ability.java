@@ -5,5 +5,7 @@ public class Ability {
     private String description;
     private String Effect;
 
+
+
     public void pokemonWithAbility(){}
 }

@@ -1,12 +1,19 @@
 package ps.pokappdex.project.repo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ps.pokappdex.project.model.Ability;
 import ps.pokappdex.project.model.Pokemon;
+import ps.pokappdex.project.model.Stats;
+import ps.pokappdex.project.model.Type;
 
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class PokedexRepository {
@@ -16,7 +23,12 @@ public class PokedexRepository {
 
     public ArrayList<Pokemon> getPokedex(){
         ArrayList<Pokemon> pokedex = new ArrayList<Pokemon>();
-        for (String pokemonName: jdbcTemplate.queryForList("SELECT DISTINCT Pokemon_name FROM pokedex ORDER BY Pokedex_number", String.class)){
+        List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT Pokemon_name, Pokedex_number, Primary_Type, Secondary_Type, Classification, Primary_Ability, Secondary_Ability, Hidden_Ability, Pokemon_Height, Pokemon_Weight, Health_Stat, Attack_Stat, Defense_Stat, Special_Attack_Stat, Special_Defense_Stat, Speed_Stat FROM pokedex ORDER BY Pokedex_number");
+        int i = 0;
+        for (Map row: pokelist){
+            Pokemon obj = new Pokemon();
+
+            String pokemonName = (String) row.get("Pokemon_name");
             pokemonName = pokemonName.replaceAll("\"", "");
 
             if (pokemonName.equals("Nidoran (Male)")) {
@@ -24,7 +36,31 @@ public class PokedexRepository {
             } else if (pokemonName.equals("Nidoran (Female)")) {
                 pokemonName = pokemonName.replace(" (Female)", "-f");
             }
-            pokedex.add(new Pokemon(pokemonName));
+
+            obj.setName(pokemonName);
+            obj.setNumber((Integer) row.get("Pokedex_number"));
+            obj.setType1(((String) row.get("Primary_Type")).replaceAll("\"", ""));
+            obj.setType2(((String) row.get("Secondary_Type")).replaceAll("\"", ""));
+            obj.setSpecies(((String) row.get("Classification")).replaceAll("\"", ""));
+
+            String[] possibleAbilities = new String[]{((String) row.get("Primary_Ability")).replaceAll("\"", ""), ((String) row.get("Secondary_Ability")).replaceAll("\"", ""), ((String) row.get("Hidden_Ability")).replaceAll("\"", "")};
+
+            obj.setPossibleAbilities(possibleAbilities);
+            obj.setHeight(((BigDecimal) row.get("Pokemon_Height")).doubleValue());
+            obj.setWeight(((BigDecimal) row.get("Pokemon_Weight")).doubleValue());
+
+            int hp = (Integer) row.get("Health_Stat");
+            int atk = (Integer) row.get("Attack_Stat");
+            int def = (Integer) row.get("Defense_Stat");
+            int spa = (Integer) row.get("Special_Attack_Stat");
+            int spd = (Integer) row.get("Special_Defense_Stat");
+            int spe = (Integer) row.get("Speed_Stat");
+
+            Stats stats = new Stats(hp, atk, def, spa, spd, spe);
+
+            obj.setStats(stats);
+
+            pokedex.add(obj);
         }
 
         return pokedex;
