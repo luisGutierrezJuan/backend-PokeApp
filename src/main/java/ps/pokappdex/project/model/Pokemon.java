@@ -18,7 +18,7 @@ public class Pokemon implements Serializable {
     private Movement[] learnset;
     private double height;
     private double weight;
-    private Stats stats;
+    private int[] stats;
     private String[] evolutiveLine;
 
     public Pokemon() {
@@ -105,11 +105,11 @@ public class Pokemon implements Serializable {
         this.weight = weight;
     }
 
-    public Stats getStats() {
+    public int[] getStats() {
         return stats;
     }
 
-    public void setStats(Stats stats) {
+    public void setStats(int[] stats) {
         this.stats = stats;
     }
 
