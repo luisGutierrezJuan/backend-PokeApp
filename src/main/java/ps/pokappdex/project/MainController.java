@@ -28,35 +28,16 @@ public class MainController {
         return pokedexRepository.getPokedex();
     }
 
-
     @PostMapping("/login")
-    public ResponseEntity<Trainer> login(@RequestBody String user){
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            Trainer newTrainer = objectMapper.readValue(user, Trainer.class);
-            if(userRepository.existe(newTrainer.getName())){
-                return new ResponseEntity<>(newTrainer, HttpStatus.OK);
-            }
-            return null;
-        } catch (Exception e ) {
-            System.out.println(e);
-        }
-        return null;
+    public boolean login(@RequestBody Trainer trainer){
+        //return new ResponseEntity<>(trainer, HttpStatus.OK);
+        return userRepository.userExists(trainer.getName());
     }
+
     @PostMapping("/register")
-    public ResponseEntity<Trainer> register(@RequestBody String user){
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            Trainer newTrainer = objectMapper.readValue(user, Trainer.class);
-            if(userRepository.existe(newTrainer.getName())){
-                return null;
-            }
-            userRepository.add(newTrainer);
-            return new ResponseEntity<>(newTrainer, HttpStatus.OK);
-        } catch (Exception e ) {
-            System.out.println(e);
+    public ResponseEntity<Trainer> register(@RequestBody Trainer trainer){
+        if(!userRepository.userExists(trainer.getName()) && userRepository.addUser(trainer)) {
+            return new ResponseEntity<>(trainer, HttpStatus.OK);
         }
         return null;
     }
