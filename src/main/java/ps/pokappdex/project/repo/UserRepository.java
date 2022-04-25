@@ -11,13 +11,13 @@ import java.util.List;
 @Repository
 public class  UserRepository {
     @Autowired
-    private static JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
-    public static boolean existe(String user){
+    public boolean existe(String user){
         List<String> trainerName=jdbcTemplate.queryForList("SELECT Name FROM Usuarios WHERE Name="+user, String.class);
         return trainerName.size() > 0;
     }
-    public static void add(Trainer trainer){
+    public void add(Trainer trainer){
         jdbcTemplate.update("INSERT INTO Usuarios (Name, userPassword, email) values("+trainer.getName()+
                 ", "+trainer.getPassword()+", "+trainer.getEmail()+")");
     }

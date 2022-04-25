@@ -35,7 +35,7 @@ public class MainController {
         try {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             Trainer newTrainer = objectMapper.readValue(user, Trainer.class);
-            if(UserRepository.existe(newTrainer.getName())){
+            if(userRepository.existe(newTrainer.getName())){
                 return new ResponseEntity<>(newTrainer, HttpStatus.OK);
             }
             return null;
@@ -50,10 +50,10 @@ public class MainController {
         try {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             Trainer newTrainer = objectMapper.readValue(user, Trainer.class);
-            if(UserRepository.existe(newTrainer.getName())){
+            if(userRepository.existe(newTrainer.getName())){
                 return null;
             }
-            UserRepository.add(newTrainer);
+            userRepository.add(newTrainer);
             return new ResponseEntity<>(newTrainer, HttpStatus.OK);
         } catch (Exception e ) {
             System.out.println(e);
