@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import ps.pokappdex.project.model.NatureGenerator;
 
 import java.util.Arrays;
 
@@ -14,6 +15,7 @@ public class ProjectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectApplication.class, args);
+		NatureGenerator.createNatures();
 	}
 
 	@Bean

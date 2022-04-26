@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ps.pokappdex.project.model.Nature;
+import ps.pokappdex.project.model.NatureGenerator;
 import ps.pokappdex.project.model.Pokemon;
 import ps.pokappdex.project.model.Trainer;
 import ps.pokappdex.project.repo.PokedexRepository;
@@ -26,6 +28,11 @@ public class MainController {
     @GetMapping("/getPokedex")
     public ArrayList<Pokemon> getPokedex(){
         return pokedexRepository.getPokedex();
+    }
+
+    @GetMapping("/getNatures")
+    public ArrayList<Nature> getNatures() {
+        return NatureGenerator.createNatures();
     }
 
     @PostMapping("/login")
