@@ -7,6 +7,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import ps.pokappdex.project.model.NatureGenerator;
+import ps.pokappdex.project.model.TypeTable;
 
 import java.util.Arrays;
 
@@ -16,6 +17,7 @@ public class ProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectApplication.class, args);
 		NatureGenerator.createNatures();
+		TypeTable.createTable();
 	}
 
 	@Bean

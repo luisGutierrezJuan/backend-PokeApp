@@ -12,7 +12,7 @@ public class TypeTable {
         this.typeList = new String[]{"Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire", "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal", "Poison", "Psychic", "Rock", "Steel", "Water"};
     }
 
-    public void createTable(){
+    public static void createTable(){
         typeTable.put("Bug", new float[]{1, 1, 1, 1, 1, 0.5f, 2, 2, 1, 0.5f, 0.5f, 1, 1, 1, 1, 2, 1, 1});
         typeTable.put("Dark", new float[]{2, 0.5f, 1, 1, 2, 2, 1, 1, 0.5f, 1, 1, 1, 1, 1, 0, 1, 1, 1});
         typeTable.put("Dragon", new float[]{1, 1, 2, 0.5f, 2, 1, 0.5f, 1, 1, 0.5f, 1, 2, 1, 1, 1, 1, 1, 0.5f});
@@ -41,7 +41,7 @@ public class TypeTable {
         return typeList;
     }
 
-    public float[] calculateTypes(String type1, String type2) {
+    public static float[] calculateTypes(String type1, String type2) {
         float[] res = new float[18];
         if (type2.equals("-")) {
             res = typeTable.get(type1);
