@@ -23,7 +23,7 @@ public class PokedexRepository {
 
     public ArrayList<Pokemon> getPokedex(){
         ArrayList<Pokemon> pokedex = new ArrayList<Pokemon>();
-        List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT Pokemon_name, Pokedex_number, Primary_Type, Secondary_Type, Classification, Primary_Ability, Secondary_Ability, Hidden_Ability, Pokemon_Height, Pokemon_Weight, Health_Stat, Attack_Stat, Defense_Stat, Special_Attack_Stat, Special_Defense_Stat, Speed_Stat FROM pokedex ORDER BY Pokedex_number WHERE Pokemon_Name IN (SELECT DISTINCT Pokemon_Name FROM pokedex) ");
+        List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT Pokemon_name, Pokedex_number, Primary_Type, Secondary_Type, Classification, Primary_Ability, Secondary_Ability, Hidden_Ability, Pokemon_Height, Pokemon_Weight, Health_Stat, Attack_Stat, Defense_Stat, Special_Attack_Stat, Special_Defense_Stat, Speed_Stat FROM pokedex GROUP BY Pokedex_number");
         int i = 0;
         for (Map row: pokelist){
             Pokemon obj = new Pokemon();
