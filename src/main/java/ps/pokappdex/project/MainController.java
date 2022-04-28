@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ps.pokappdex.project.model.*;
+import ps.pokappdex.project.repo.AbilityRepository;
 import ps.pokappdex.project.repo.PokedexRepository;
 import ps.pokappdex.project.repo.UserRepository;
 
@@ -21,6 +22,9 @@ public class MainController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AbilityRepository abilityRepository;
 
     @GetMapping("/getPokedex")
     public ArrayList<Pokemon> getPokedex(){
@@ -41,6 +45,11 @@ public class MainController {
     @GetMapping("/getTypeDamages")
     public float[] getTypeDamages(String t1, String t2) {
         return TypeTable.calculateTypes(t1, t2);
+    }
+
+    @GetMapping("/getAbilities")
+    public ArrayList<Ability> getAbilities() {
+        return abilityRepository.getAbilities();
     }
 
     @PostMapping("/login")
