@@ -25,28 +25,28 @@ public class AbilityRepository {
             Ability obj3 = new Ability();
 
             String abilityName1 = (String) row.get("Primary_Ability");
-            abilityName1.replaceAll("\"", "");
+            abilityName1 = abilityName1.replaceAll("\"", "");
 
             String abilityDescription1 = (String) row.get("Primary_Ability_Description");
-            abilityDescription1.replaceAll("\"", "");
+            abilityDescription1 = abilityDescription1.replaceAll("\"", "");
 
             obj1.setName(abilityName1);
             obj1.setDescription(abilityDescription1);
 
             String abilityName2 = (String) row.get("Secondary_Ability");
-            abilityName2.replaceAll("\"", "");
+            abilityName2 = abilityName2.replaceAll("\"", "");
 
             String abilityDescription2 = (String) row.get("Secondary_Ability_Description");
-            abilityDescription2.replaceAll("\"", "");
+            abilityDescription2 = abilityDescription2.replaceAll("\"", "");
 
             obj2.setName(abilityName2);
             obj2.setDescription(abilityDescription2);
 
             String abilityName3 = (String) row.get("Hidden_Ability");
-            abilityName3.replaceAll("\"", "");
+            abilityName3 = abilityName3.replaceAll("\"", "");
 
             String abilityDescription3 = (String) row.get("Hidden_Ability_Description");
-            abilityDescription3.replaceAll("\"", "");
+            abilityDescription3 = abilityDescription3.replaceAll("\"", "");
 
             obj3.setName(abilityName3);
             obj3.setDescription(abilityDescription3);
