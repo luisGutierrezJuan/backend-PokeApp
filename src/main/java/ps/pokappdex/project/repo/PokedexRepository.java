@@ -49,15 +49,10 @@ public class PokedexRepository {
             obj.setWeight(((BigDecimal) row.get("Pokemon_Weight")).doubleValue());
 
             int hp = (Integer) row.get("Health_Stat");
-            System.out.println(hp);
             int atk = (Integer) row.get("Attack_Stat");
-            System.out.println(atk);
             int def = (Integer) row.get("Defense_Stat");
-            System.out.println(def);
             int spa = (Integer) row.get("Special_Attack_Stat");
-            System.out.println(spa);
             int spd = (Integer) row.get("Special_Defense_Stat");
-            System.out.println(spd);
             int spe = (Integer) row.get("Speed_Stat");
 
             obj.setStats(new int[]{hp, atk, def, spa, spd, spe});

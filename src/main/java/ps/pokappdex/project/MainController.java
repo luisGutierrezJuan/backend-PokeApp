@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ps.pokappdex.project.model.*;
 import ps.pokappdex.project.repo.AbilityRepository;
+import ps.pokappdex.project.repo.ItemRepository;
 import ps.pokappdex.project.repo.PokedexRepository;
 import ps.pokappdex.project.repo.UserRepository;
 
@@ -25,6 +26,9 @@ public class MainController {
 
     @Autowired
     private AbilityRepository abilityRepository;
+
+    @Autowired
+    private ItemRepository itemRepository;
 
     @GetMapping("/getPokedex")
     public ArrayList<Pokemon> getPokedex(){
@@ -51,6 +55,12 @@ public class MainController {
     public ArrayList<Ability> getAbilities() {
         return abilityRepository.getAbilities();
     }
+
+    @GetMapping("/getItems")
+    public ArrayList<Item> getItems() {
+        return itemRepository.getItems();
+    }
+
 
     @PostMapping("/login")
     public ResponseEntity<Boolean> login(@RequestBody Trainer trainer){
