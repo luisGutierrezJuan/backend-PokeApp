@@ -7,10 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ps.pokappdex.project.model.*;
-import ps.pokappdex.project.repo.AbilityRepository;
-import ps.pokappdex.project.repo.ItemRepository;
-import ps.pokappdex.project.repo.PokedexRepository;
-import ps.pokappdex.project.repo.UserRepository;
+import ps.pokappdex.project.repo.*;
 
 import java.util.ArrayList;
 
@@ -29,6 +26,9 @@ public class MainController {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private MoveRepository moveRepository;
 
     @GetMapping("/getPokedex")
     public ArrayList<Pokemon> getPokedex(){
@@ -59,6 +59,11 @@ public class MainController {
     @GetMapping("/getItems")
     public ArrayList<Item> getItems() {
         return itemRepository.getItems();
+    }
+
+    @GetMapping("/getMoves")
+    public ArrayList<Movement> getMoves() {
+        return moveRepository.getMoves();
     }
 
 
