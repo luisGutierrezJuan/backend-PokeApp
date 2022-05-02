@@ -22,7 +22,6 @@ public class MoveRepository {
         List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT name, description FROM moves ORDER BY name");
         for (Map row: pokelist){
             Movement obj1 = new Movement();
-
             String moveName = (String) row.get("name");
             moveName = moveName.replaceAll("-", " ");
             String[] parts = moveName.split("\\s+");
