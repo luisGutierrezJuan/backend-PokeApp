@@ -53,9 +53,9 @@ public class MainController {
     }
 
     @PostMapping("/login")
-    public boolean login(@RequestBody Trainer trainer){
+    public ResponseEntity<Boolean> login(@RequestBody Trainer trainer){
         //return new ResponseEntity<>(trainer, HttpStatus.OK);
-        return userRepository.userExists(trainer.getName());
+        return new ResponseEntity<>(userRepository.logUser(trainer),HttpStatus.OK);
     }
 
     @PostMapping("/register")
