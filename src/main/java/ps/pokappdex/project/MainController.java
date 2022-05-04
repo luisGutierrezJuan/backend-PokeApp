@@ -1,7 +1,5 @@
 package ps.pokappdex.project;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,7 +60,7 @@ public class MainController {
     }
 
     @GetMapping("/getMoves")
-    public ArrayList<Movement> getMoves() {
+    public ArrayList<Move> getMoves() {
         return moveRepository.getMoves();
     }
 

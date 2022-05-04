@@ -1,13 +1,13 @@
 package ps.pokappdex.project.model;
 
-public class Movement {
+public class Move {
     private String name;
     private String description;
     private int basePower;
     private int baseAccuracy;
     private String type;
 
-    public Movement() {
+    public Move() {
     }
 
     public String getName() {

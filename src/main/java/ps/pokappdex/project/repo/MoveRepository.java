@@ -3,12 +3,9 @@ package ps.pokappdex.project.repo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import ps.pokappdex.project.model.Ability;
-import ps.pokappdex.project.model.Item;
-import ps.pokappdex.project.model.Movement;
+import ps.pokappdex.project.model.Move;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +14,11 @@ public class MoveRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public ArrayList<Movement> getMoves(){
-        ArrayList<Movement> movedex = new ArrayList<>();
+    public ArrayList<Move> getMoves(){
+        ArrayList<Move> movedex = new ArrayList<>();
         List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT name, description FROM moves ORDER BY name");
         for (Map row: pokelist){
-            Movement obj1 = new Movement();
+            Move obj1 = new Move();
             String moveName = (String) row.get("name");
             moveName = moveName.replaceAll("-", " ");
             String[] parts = moveName.split("\\s+");
