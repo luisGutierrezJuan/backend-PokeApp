@@ -18,6 +18,13 @@ public class  UserRepository {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    public boolean logUser(Trainer trainer){
+        MapSqlParameterSource m=new MapSqlParameterSource();
+        m.addValue("name", trainer.getName());
+        SqlParameterSource namedParameters = m.addValue("password",trainer.getPassword());
+        return !namedParameterJdbcTemplate.queryForList("SELECT Name FROM Usuarios WHERE Name=:name AND userPassword=:password", namedParameters, String.class).isEmpty();
+    }
+
     public boolean userExists(String name){
         SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("name", name);
         return !namedParameterJdbcTemplate.queryForList("SELECT Name FROM Usuarios WHERE Name=:name", namedParameters, String.class).isEmpty();

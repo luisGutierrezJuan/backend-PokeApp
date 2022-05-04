@@ -7,9 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ps.pokappdex.project.model.*;
-import ps.pokappdex.project.repo.AbilityRepository;
-import ps.pokappdex.project.repo.PokedexRepository;
-import ps.pokappdex.project.repo.UserRepository;
+import ps.pokappdex.project.repo.*;
 
 import java.util.ArrayList;
 
@@ -25,6 +23,12 @@ public class MainController {
 
     @Autowired
     private AbilityRepository abilityRepository;
+
+    @Autowired
+    private ItemRepository itemRepository;
+
+    @Autowired
+    private MoveRepository moveRepository;
 
     @GetMapping("/getPokedex")
     public ArrayList<Pokemon> getPokedex(){
@@ -52,10 +56,21 @@ public class MainController {
         return abilityRepository.getAbilities();
     }
 
+    @GetMapping("/getItems")
+    public ArrayList<Item> getItems() {
+        return itemRepository.getItems();
+    }
+
+    @GetMapping("/getMoves")
+    public ArrayList<Movement> getMoves() {
+        return moveRepository.getMoves();
+    }
+
+
     @PostMapping("/login")
-    public boolean login(@RequestBody Trainer trainer){
+    public ResponseEntity<Boolean> login(@RequestBody Trainer trainer){
         //return new ResponseEntity<>(trainer, HttpStatus.OK);
-        return userRepository.userExists(trainer.getName());
+        return new ResponseEntity<>(userRepository.logUser(trainer),HttpStatus.OK);
     }
 
     @PostMapping("/register")
