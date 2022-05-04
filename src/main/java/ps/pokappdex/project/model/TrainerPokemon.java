@@ -7,6 +7,6 @@ public class TrainerPokemon {
     private Type type2;
     private double weight;
     private Stats stats;
-    private Movement[] learntMovements;
+    private Move[] learntMoves;
     private Ability ability;
 }

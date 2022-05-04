@@ -1,5 +1,5 @@
 package ps.pokappdex.project.model;
 
-public class Movement {
+public class Move {
 
 }

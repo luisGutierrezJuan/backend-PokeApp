@@ -11,7 +11,7 @@ public class Pokemon implements Serializable {
     private String type2;
     private String species;
     private String[] possibleAbilities = new String[3];
-    private Movement[] learnset;
+    private Move[] learnset;
     private double height;
     private double weight;
     private int[] stats;
@@ -77,11 +77,11 @@ public class Pokemon implements Serializable {
         this.possibleAbilities = possibleAbilities;
     }
 
-    public Movement[] getLearnset() {
+    public Move[] getLearnset() {
         return learnset;
     }
 
-    public void setLearnset(Movement[] learnset) {
+    public void setLearnset(Move[] learnset) {
         this.learnset = learnset;
     }
 
