@@ -4,6 +4,7 @@ public class Item {
     private String name;
     private String category;     //category
     private String description;    //description
+    private String image;
 
     public Item() {
 
@@ -37,5 +38,13 @@ public class Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -16,7 +16,7 @@ public class ItemRepository {
 
     public ArrayList<Item> getItems(){
         ArrayList<Item> itemdex = new ArrayList<>();
-        List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT name, description FROM items ORDER BY name");
+        List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT name, description, image_url FROM items ORDER BY name");
         System.out.println(pokelist.size());
         for (Map row: pokelist){
             Item obj1 = new Item();
@@ -37,6 +37,10 @@ public class ItemRepository {
 
             String itemDescription = (String) row.get("description");
             obj1.setDescription(itemDescription);
+
+            String itemImage = (String) row.get("image_url");
+            obj1.setImage(itemImage);
+
             itemdex.add(obj1);
         }
         return itemdex;

@@ -16,7 +16,7 @@ public class MoveRepository {
 
     public ArrayList<Move> getMoves(){
         ArrayList<Move> movedex = new ArrayList<>();
-        List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT name, description FROM moves ORDER BY name");
+        List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT name, description, power, accuracy FROM moves ORDER BY name");
         for (Map row: pokelist){
             Move obj1 = new Move();
             String moveName = (String) row.get("name");
@@ -38,6 +38,17 @@ public class MoveRepository {
                 continue;
             }
             obj1.setDescription(moveDescription);
+
+            String movePower = (String) row.get("power");
+            if (movePower.equals("0")) movePower = "-";
+            System.out.println(moveName + " power: " + movePower);
+            obj1.setBasePower(movePower);
+
+            String moveAccuracy = (String) row.get("accuracy");
+            if (moveAccuracy.equals("0")) moveAccuracy = "-";
+            System.out.println(moveName + " accuracy: " + moveAccuracy);
+            obj1.setBaseAccuracy(moveAccuracy);
+
             movedex.add(obj1);
         }
         return movedex;

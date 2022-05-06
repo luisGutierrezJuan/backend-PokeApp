@@ -3,8 +3,8 @@ package ps.pokappdex.project.model;
 public class Move {
     private String name;
     private String description;
-    private int basePower;
-    private int baseAccuracy;
+    private String basePower;
+    private String baseAccuracy;
     private String type;
 
     public Move() {
@@ -26,19 +26,19 @@ public class Move {
         this.description = description;
     }
 
-    public int getBasePower() {
+    public String getBasePower() {
         return basePower;
     }
 
-    public void setBasePower(int basePower) {
+    public void setBasePower(String basePower) {
         this.basePower = basePower;
     }
 
-    public int getBaseAccuracy() {
+    public String getBaseAccuracy() {
         return baseAccuracy;
     }
 
-    public void setBaseAccuracy(int baseAccuracy) {
+    public void setBaseAccuracy(String baseAccuracy) {
         this.baseAccuracy = baseAccuracy;
     }
 
