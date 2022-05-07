@@ -16,7 +16,7 @@ public class MoveRepository {
 
     public ArrayList<Move> getMoves(){
         ArrayList<Move> movedex = new ArrayList<>();
-        List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT name, description, power, accuracy FROM moves ORDER BY name");
+        List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT name, description, power, accuracy, type, category FROM moves ORDER BY name");
         for (Map row: pokelist){
             Move obj1 = new Move();
             String moveName = (String) row.get("name");
@@ -48,6 +48,14 @@ public class MoveRepository {
             if (moveAccuracy.equals("0")) moveAccuracy = "-";
             System.out.println(moveName + " accuracy: " + moveAccuracy);
             obj1.setBaseAccuracy(moveAccuracy);
+
+            String moveType = (String) row.get("type");
+            moveType = moveType.substring(0, 1).toUpperCase() + moveType.substring(1);
+            obj1.setType(moveType);
+
+            String moveCategory = (String) row.get("category");
+            moveType = moveType.substring(0, 1).toUpperCase() + moveType.substring(1);
+            obj1.setCategory(moveType);
 
             movedex.add(obj1);
         }

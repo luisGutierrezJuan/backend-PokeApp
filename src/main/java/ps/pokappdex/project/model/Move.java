@@ -6,6 +6,7 @@ public class Move {
     private String basePower;
     private String baseAccuracy;
     private String type;
+    private String category;
 
     public Move() {
     }
@@ -48,5 +49,13 @@ public class Move {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
