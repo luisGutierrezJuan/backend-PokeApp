@@ -54,8 +54,8 @@ public class MoveRepository {
             obj1.setType(moveType);
 
             String moveCategory = (String) row.get("category");
-            moveType = moveType.substring(0, 1).toUpperCase() + moveType.substring(1);
-            obj1.setCategory(moveType);
+            moveCategory = moveCategory.substring(0, 1).toUpperCase() + moveCategory.substring(1);
+            obj1.setCategory(moveCategory);
 
             movedex.add(obj1);
         }
