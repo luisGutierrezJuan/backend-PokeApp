@@ -41,12 +41,10 @@ public class MoveRepository {
 
             String movePower = (String) row.get("power");
             if (movePower.equals("0")) movePower = "-";
-            System.out.println(moveName + " power: " + movePower);
             obj1.setBasePower(movePower);
 
             String moveAccuracy = (String) row.get("accuracy");
             if (moveAccuracy.equals("0")) moveAccuracy = "-";
-            System.out.println(moveName + " accuracy: " + moveAccuracy);
             obj1.setBaseAccuracy(moveAccuracy);
 
             String moveType = (String) row.get("type");
