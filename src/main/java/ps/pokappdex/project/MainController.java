@@ -79,4 +79,13 @@ public class MainController {
         return null;
     }
 
+    @PostMapping("/getEmailByName")
+    public ResponseEntity<Trainer> getEmailByName(@RequestBody String name){
+        System.out.println(name);
+        if(userRepository.userExists(name)) {
+            return new ResponseEntity<>(userRepository.getEmailByName(name), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
 }

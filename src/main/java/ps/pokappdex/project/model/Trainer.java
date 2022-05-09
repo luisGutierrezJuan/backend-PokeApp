@@ -8,12 +8,15 @@ public class Trainer {
     private String email;
     private ArrayList<TrainerPokemon[]> teams;
 
-    Trainer(){
+    public Trainer(){
+    }
+
+    public void setEmail(String email){
+        this.email = email;
     }
     public String getName(){
         return this.name;
     }
-
     public String getPassword(){
         return this.password;
     }

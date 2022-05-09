@@ -34,4 +34,11 @@ public class  UserRepository {
         jdbcTemplate.update("INSERT INTO Usuarios (Name, userPassword, email) values(?,?,?)", trainer.getName(), trainer.getPassword(), trainer.getEmail());
         return userExists(trainer.getName());
     }
+
+    public Trainer getEmailByName(String name){
+        SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("name", name);
+        Trainer tr = new Trainer();
+        tr.setEmail(namedParameterJdbcTemplate.queryForList("SELECT email FROM Usuarios WHERE Name=:name", namedParameters, String.class).get(0));
+        return tr;
+    }
 }
