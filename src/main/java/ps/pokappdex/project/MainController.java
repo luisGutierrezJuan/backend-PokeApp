@@ -81,11 +81,14 @@ public class MainController {
 
     @PostMapping("/getEmailByName")
     public ResponseEntity<Trainer> getEmailByName(@RequestBody String name){
-        System.out.println(name);
         if(userRepository.userExists(name)) {
             return new ResponseEntity<>(userRepository.getEmailByName(name), HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
+    @PostMapping("/deleteUser")
+    public ResponseEntity<boolean> deleteUser(@RequestBody String name){
+
+    }
 }
