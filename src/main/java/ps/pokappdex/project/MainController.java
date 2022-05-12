@@ -88,7 +88,10 @@ public class MainController {
     }
 
     @PostMapping("/deleteUser")
-    public ResponseEntity<boolean> deleteUser(@RequestBody String name){
-
+    public ResponseEntity<Boolean> deleteUser(@RequestBody String name){
+        if(userRepository.userExists(name)) {
+            return new ResponseEntity<>(userRepository.deleteUser(name), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
     }
 }

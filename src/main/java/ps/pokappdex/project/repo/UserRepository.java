@@ -8,6 +8,9 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import ps.pokappdex.project.model.Trainer;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Repository
 public class  UserRepository {
@@ -40,5 +43,13 @@ public class  UserRepository {
         Trainer tr = new Trainer();
         tr.setEmail(namedParameterJdbcTemplate.queryForList("SELECT email FROM Usuarios WHERE Name=:name", namedParameters, String.class).get(0));
         return tr;
+    }
+    public boolean deleteUser(String name){
+        Object[] args = new Object[] {name};
+        int r=jdbcTemplate.update("DELETE FROM Usuarios WHERE Name =?", args);
+        return true;
+    }
+    public void updateUser(String name){
+
     }
 }
