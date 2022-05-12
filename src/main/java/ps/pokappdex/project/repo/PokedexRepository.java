@@ -23,7 +23,7 @@ public class PokedexRepository {
 
     public ArrayList<Pokemon> getPokedex(){
         ArrayList<Pokemon> pokedex = new ArrayList<Pokemon>();
-        List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT Pokemon_name, Pokedex_number, Primary_Type, Secondary_Type, Classification, Primary_Ability, Secondary_Ability, Hidden_Ability, Pokemon_Height, Pokemon_Weight, Health_Stat, Attack_Stat, Defense_Stat, Special_Attack_Stat, Special_Defense_Stat, Speed_Stat FROM pokedex GROUP BY Pokedex_number");
+        List<Map<String, Object>> pokelist = jdbcTemplate.queryForList("SELECT DISTINCT Pokemon_name, Pokedex_number, Primary_Type, Secondary_Type, Classification, Primary_Ability, Secondary_Ability, Hidden_Ability, Pokemon_Height, Pokemon_Weight, Health_Stat, Attack_Stat, Defense_Stat, Special_Attack_Stat, Special_Defense_Stat, Speed_Stat, MoveSet FROM pokedex GROUP BY Pokedex_number");
         int i = 0;
         for (Map row: pokelist){
             Pokemon obj = new Pokemon();
@@ -56,6 +56,11 @@ public class PokedexRepository {
             int spe = (Integer) row.get("Speed_Stat");
 
             obj.setStats(new int[]{hp, atk, def, spa, spd, spe});
+
+            String learnsetString = (String) row.get("MoveSet");
+            if (learnsetString == null) continue;
+            String[] learnset = learnsetString.split(",");
+            obj.setLearnset(learnset);
 
             pokedex.add(obj);
         }

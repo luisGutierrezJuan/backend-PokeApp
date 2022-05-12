@@ -88,7 +88,7 @@ public class MainController {
     }
 
     @PostMapping("/deleteUser")
-    public ResponseEntity<boolean> deleteUser(@RequestBody String name){
+    public ResponseEntity<Boolean> deleteUser(@RequestBody String name){
 
     }
 }
